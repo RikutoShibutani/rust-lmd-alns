@@ -1,6 +1,6 @@
 use std::fs::File;
-use std::io::BufReader;
 use std::io::prelude::*;
+use std::io::BufReader;
 
 pub struct customers
 // 顧客情報
@@ -66,22 +66,4 @@ pub struct Vehicle
     time: f64,
     deliverymen: Vec<Delivery>,
     tour: Vec<Tour>,
-}
-
-pub fn read_instance(filename: &str) -> Instance {
-    let mut instance: Instance = Instance {};
-    let mut file: File = File::open(filename).unwrap();
-    let mut reader: BufReader<File> = BufReader::new(file);
-    let mut line: String = String::new();
-    reader.read_line(&mut line).unwrap();
-    let mut tokens: Vec<&str> = line.split_whitespace().collect();
-    instance.parkingnum = tokens[0].parse().unwrap();
-    instance.maxvehiclenum = tokens[1].parse().unwrap();
-    instance.maxdeliverynum = tokens[2].parse().unwrap();
-    instance.maxvehiclecapacity = tokens[3].parse().unwrap();
-    instance.vehiclefixedcost = tokens[4].parse().unwrap();
-    instance.deliveryfixedcost = tokens[5].parse().unwrap();
-    instance.vehicleunitcost = tokens[6].parse().unwrap();
-    instance.deliveryunitcost = tokens[7].parse().unwrap();
-    instance.filename = filename.to_string();
 }
